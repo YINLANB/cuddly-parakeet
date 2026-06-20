@@ -1,0 +1,71 @@
+# ============================================
+# 马赛克去除工具 - Git 忽略文件
+# ============================================
+
+# ---- 模型权重 (必须排除，超过 GitHub 100MB 限制) ----
+weights/*.pth
+weights/*.pth.md5
+weights/*.ckpt
+!weights/.gitkeep
+
+# ---- 用户上传和处理结果 (运行时数据) ----
+uploads/
+processed/
+
+# ---- Python 字节码 ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# ---- Python 虚拟环境 ----
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ---- 测试缓存 ----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---- IDE / 编辑器文件 ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ---- 操作系统文件 ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- 临时文件 ----
+temp_test/
+temp/
+*.tmp
+*.bak
+*.log
+
+# ---- 测试生成的临时文件 ----
+test_input.jpg
+test_output.jpg
+
+# ---- Python 打包相关 ----
+*.whl
+*.tar.gz
+
+# ---- 日志文件 ----
+*.log
+logs/

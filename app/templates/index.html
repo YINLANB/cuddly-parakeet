@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马赛克去除工具 - AI图片修复</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🖼️ 马赛克去除工具</h1>
+            <p class="subtitle">基于AI的智能图片修复，支持全图和局部马赛克处理</p>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 上传区域 -->
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <p class="upload-text">点击或拖拽图片到此处上传</p>
+                    <p class="upload-hint">支持 JPG, PNG, BMP, WebP 格式，最大 50MB | 支持 Ctrl+V 粘贴</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+            </section>
+
+            <!-- 预览和处理区域 -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <div class="preview-container">
+                    <!-- 原图预览 -->
+                    <div class="preview-box">
+                        <h3>原图</h3>
+                        <div class="image-wrapper">
+                            <img id="originalImage" src="" alt="原图">
+                        </div>
+                        <p class="image-info" id="originalInfo"></p>
+                    </div>
+
+                    <!-- 处理选项 -->
+                    <div class="options-box">
+                        <h3>处理选项</h3>
+
+                        <div class="option-group">
+                            <label class="option-label">处理模式</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="mode" value="full" checked>
+                                    <span class="radio-custom"></span>
+                                    全图马赛克
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="mode" value="partial">
+                                    <span class="radio-custom"></span>
+                                    局部马赛克
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">
+                                <input type="checkbox" id="faceEnhance" checked>
+                                <span class="checkbox-custom"></span>
+                                人脸增强
+                            </label>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">放大倍数</label>
+                            <select id="scaleSelect" class="select-input">
+                                <option value="2">2x</option>
+                                <option value="4" selected>4x</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">输出格式</label>
+                            <select id="formatSelect" class="select-input">
+                                <option value="png" selected>PNG (无损)</option>
+                                <option value="jpeg">JPEG (有损)</option>
+                                <option value="webp">WebP (推荐)</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group" id="qualityGroup" style="display: none;">
+                            <label class="option-label">图片质量: <span id="qualityValue">95</span>%</label>
+                            <input type="range" id="qualitySlider" min="1" max="100" value="95" class="range-input">
+                        </div>
+
+                        <button class="btn btn-primary" id="processBtn" disabled>
+                            <span class="btn-text">开始处理</span>
+                            <span class="btn-loading" style="display: none;">处理中...</span>
+                        </button>
+
+                        <button class="btn btn-secondary" id="resetBtn">
+                            重新上传
+                        </button>
+                    </div>
+
+                    <!-- 结果预览 -->
+                    <div class="preview-box" id="resultBox" style="display: none;">
+                        <h3>处理结果</h3>
+                        <div class="image-wrapper">
+                            <img id="resultImage" src="" alt="处理结果">
+                        </div>
+                        <p class="image-info" id="resultInfo"></p>
+                        <button class="btn btn-success" id="downloadBtn">
+                            下载结果
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 处理进度 -->
+            <section class="progress-section" id="progressSection" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">正在处理...</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>💡 提示：全图马赛克使用AI超分辨率技术，局部马赛克会自动检测并修复</p>
+            <p class="copyright">© 2024 马赛克去除工具 - 仅供学习研究使用</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+
+    <!-- 图片放大模态框 -->
+    <div class="modal-overlay" id="imageModal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img class="modal-image" id="modalImage" src="" alt="放大查看">
+        </div>
+    </div>
+</body>
+</html>

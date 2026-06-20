@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mosaic-removal-tool"
+version = "1.0.0"
+description = "AI-powered mosaic removal tool for images"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["mosaic", "removal", "ai", "super-resolution", "image-processing"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "fastapi>=0.103.2",
+    "uvicorn>=0.22.0",
+    "python-multipart>=0.0.6",
+    "opencv-python>=4.8.1",
+    "numpy>=1.21.6",
+    "Pillow>=9.5.0",
+    "scikit-image>=0.19.3",
+    "torch>=1.12.0",
+    "torchvision>=0.13.0",
+    "basicsr>=1.4.2",
+    "realesrgan>=0.3.0",
+    "gfpgan>=1.3.8",
+    "facexlib>=0.3.0",
+    "tqdm>=4.64.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "httpx>=0.24.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/mosaic-removal-tool"
+Repository = "https://github.com/your-username/mosaic-removal-tool"
+Issues = "https://github.com/your-username/mosaic-removal-tool/issues"
+
+[project.scripts]
+mosaic-removal = "app.main:app"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
